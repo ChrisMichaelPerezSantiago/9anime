@@ -6,12 +6,80 @@
 
 # 📚 Documentation
 
+## `getAllChapters(epURL: string)`
+
+Episode List
+
+```ts
+const episodeList = await getAllChapters(
+  "https://9anime.vc/watch/tokyo-ghoul-790"
+);
+```
+
+<details>
+<summary>Episodes JSON</summary>
+
+```json
+[
+  {
+    "episode": "1",
+    "epURL": "https://9anime.vc/watch/tokyo-ghoul-790?ep=13547"
+  },
+  {
+    "episode": "2",
+    "epURL": "https://9anime.vc/watch/tokyo-ghoul-790?ep=13548"
+  },
+  {
+    "episode": "3",
+    "epURL": "https://9anime.vc/watch/tokyo-ghoul-790?ep=13549"
+  },
+  {
+    "episode": "4",
+    "epURL": "https://9anime.vc/watch/tokyo-ghoul-790?ep=13550"
+  },
+  {
+    "episode": "5",
+    "epURL": "https://9anime.vc/watch/tokyo-ghoul-790?ep=13551"
+  },
+  {
+    "episode": "6",
+    "epURL": "https://9anime.vc/watch/tokyo-ghoul-790?ep=13552"
+  },
+  {
+    "episode": "7",
+    "epURL": "https://9anime.vc/watch/tokyo-ghoul-790?ep=13553"
+  },
+  {
+    "episode": "8",
+    "epURL": "https://9anime.vc/watch/tokyo-ghoul-790?ep=13554"
+  },
+  {
+    "episode": "9",
+    "epURL": "https://9anime.vc/watch/tokyo-ghoul-790?ep=13555"
+  },
+  {
+    "episode": "10",
+    "epURL": "https://9anime.vc/watch/tokyo-ghoul-790?ep=13556"
+  },
+  {
+    "episode": "11",
+    "epURL": "https://9anime.vc/watch/tokyo-ghoul-790?ep=13557"
+  },
+  {
+    "episode": "12",
+    "epURL": "https://9anime.vc/watch/tokyo-ghoul-790?ep=13558"
+  }
+]
+```
+
+</details>
+
 ## `getEpisodeSources(epURL: string)`
 
 Episode Sources (servers).
 
 ```ts
-const chapter = await getEpisodeSources(
+const sources = await getEpisodeSources(
   "https://9anime.vc/watch/tokyo-ghoul-790?ep=13547"
 );
 ```

@@ -9,3 +9,8 @@ export interface IServersDataIdRoot {
   serverName: string | null;
   server: any | null;
 }
+
+export interface IChapters {
+  episode: string;
+  epURL: string;
+}

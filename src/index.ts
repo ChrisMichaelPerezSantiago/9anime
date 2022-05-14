@@ -2,7 +2,11 @@ import { load } from "cheerio";
 import { PromisePool } from "@supercharge/promise-pool";
 import request from "./request";
 import Utils from "./Utils";
-import type { IServersDataIdProps, IServersDataIdRoot } from "./interfaces";
+import type {
+  IChapters,
+  IServersDataIdProps,
+  IServersDataIdRoot,
+} from "./interfaces";
 
 const utils = new Utils();
 
@@ -83,6 +87,47 @@ export const getEpisodeSources = async (
 
   return results;
 };
+
+export const getAllChapters = async (epURL: string): Promise<IChapters[]> => {
+  // eslint-disable-next-line antfu/if-newline
+  if (!epURL) throw new Error("Provide epURL property");
+
+  const slug = epURL.split("-")[2];
+
+  const response = await request({
+    method: "get",
+    url: `https://9anime.vc/ajax/episode/list/${slug}`,
+  });
+
+  const html = response.html.toString();
+  const $ = load(html);
+
+  const episodes: IChapters[] = await Promise.all(
+    $("div.episodes-ul a")
+      .map(
+        (_, element) =>
+          new Promise<IChapters>((resolve, reject) => {
+            try {
+              const $el = $(element);
+              const _epURL = `https://9anime.vc${$el.attr("href")}`;
+              const episode = $el.find("div.order").text().trim();
+              resolve({ episode, epURL: _epURL });
+            } catch (error) {
+              reject(error);
+            }
+          })
+      )
+      .get()
+  );
+
+  return episodes;
+};
+
+// (async () => {
+//   const r = await getAllChapters("https://9anime.vc/watch/tokyo-ghoul-790");
+
+//   console.log(r.map((r) => r));
+// })();
 
 // (async () => {
 //   const r = await getEpisodeSources(

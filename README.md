@@ -4,6 +4,14 @@
 
 ## ⚠️ work in progress ...
 
+# Environment
+
+Create a `.env` file in the root of your project:
+
+```sh
+BASE_URL=https://9anime.vc
+```
+
 # 📚 Documentation
 
 ## `getAllChapters(epURL: string)`

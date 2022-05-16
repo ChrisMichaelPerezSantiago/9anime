@@ -1,5 +1,6 @@
 import { load } from "cheerio";
 import { PromisePool } from "@supercharge/promise-pool";
+import config from "./config";
 import request from "./request";
 import Utils from "./Utils";
 import type {
@@ -46,7 +47,7 @@ export const getEpisodeSources = async (
 
   const response = await request({
     method: "get",
-    url: `https://9anime.vc/ajax/episode/servers?${utils.buildQuery({
+    url: `${config.BASE_URL}/ajax/episode/servers?${utils.buildQuery({
       episodeId: params.get("ep"),
     })}`,
   });
@@ -96,7 +97,7 @@ export const getAllChapters = async (epURL: string): Promise<IChapters[]> => {
 
   const response = await request({
     method: "get",
-    url: `https://9anime.vc/ajax/episode/list/${slug}`,
+    url: `${config.BASE_URL}/ajax/episode/list/${slug}`,
   });
 
   const html = response.html.toString();
@@ -109,7 +110,7 @@ export const getAllChapters = async (epURL: string): Promise<IChapters[]> => {
           new Promise<IChapters>((resolve, reject) => {
             try {
               const $el = $(element);
-              const _epURL = `https://9anime.vc${$el.attr("href")}`;
+              const _epURL = `${config.BASE_URL}${$el.attr("href")}`;
               const episode = $el.find("div.order").text().trim();
               resolve({ episode, epURL: _epURL });
             } catch (error) {

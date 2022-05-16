@@ -14,14 +14,16 @@ BASE_URL=https://9anime.vc
 
 # 📚 Documentation
 
-## `getAllChapters(epURL: string)`
+## `getAllEpisodes(epURL: string)`
 
 Episode List
 
 ```ts
-const episodeList = await getAllChapters(
-  "https://9anime.vc/watch/tokyo-ghoul-790"
-);
+(async () => {
+  const episodeList = await getAllEpisodes(
+    "https://9anime.vc/watch/tokyo-ghoul-790"
+  );
+})();
 ```
 
 <details>
@@ -87,9 +89,11 @@ const episodeList = await getAllChapters(
 Episode Sources (servers).
 
 ```ts
-const sources = await getEpisodeSources(
-  "https://9anime.vc/watch/tokyo-ghoul-790?ep=13547"
-);
+(async () => {
+  const sources = await getEpisodeSources(
+    "https://9anime.vc/watch/tokyo-ghoul-790?ep=13547"
+  );
+})();
 ```
 
 <details>
@@ -116,6 +120,55 @@ const sources = await getEpisodeSources(
       ],
       "server": 4
     }
+  } // more ...
+]
+```
+
+</details>
+
+## `getSchedule()`
+
+Monthly schedule on broadcast of each episode.
+
+```ts
+(async () => {
+  const schedule = await getSchedule();
+})();
+```
+
+<details>
+<summary>Schedule JSON</summary>
+
+```json
+[
+  {
+    "date": "2022-05-16",
+    "episodes": [
+      {
+        "episode": "7",
+        "epURL": "https://9anime.vc/watch/yuu-gi-ou-go-rush-18000?ep=90911",
+        "animeName": "Yuu Gi Ou: Go Rush!!",
+        "time": "04:00"
+      },
+      {
+        "episode": "7",
+        "epURL": null,
+        "animeName": "Healer Girl",
+        "time": "17:30"
+      },
+      {
+        "episode": "6",
+        "epURL": null,
+        "animeName": "AMAIM Warrior at the Borderline",
+        "time": "19:00"
+      },
+      {
+        "episode": "6",
+        "epURL": null,
+        "animeName": "Honzuki no Gekokujou: Shisho ni Naru Tame ni wa Shudan wo Erandeiraremasen 3rd Season",
+        "time": "22:00"
+      }
+    ]
   } // more ...
 ]
 ```
